@@ -46,6 +46,42 @@ namespace Tower_Defence_Game.src
 
         }
 
+        private void Process(ref bool continueGame)
+        {
+            ConsoleKey inputWorld = Console.ReadKey(intercept: true).Key;
+
+            switch (inputWorld)
+            {
+                default:
+                    break;
+
+                case ConsoleKey.W:
+                    currentPlayerPosition.Item1 = Math.Max(0, currentPlayerPosition.Item1 - 1);
+                    break;
+
+                case ConsoleKey.S:
+                    currentPlayerPosition.Item1 = Math.Min(worldTileData.GetLength(0) - 1, currentPlayerPosition.Item1 + 1);
+                    break;
+
+                case ConsoleKey.A:
+                    currentPlayerPosition.Item2 = Math.Max(0, currentPlayerPosition.Item2 - 1);
+                    break;
+
+                case ConsoleKey.D:
+                    currentPlayerPosition.Item2 = Math.Min(worldTileData.GetLength(1) - 1, currentPlayerPosition.Item2 + 1);
+                    break;
+
+                case ConsoleKey.Spacebar:
+
+                    break;
+
+                case ConsoleKey.Escape:
+                    continueGame = false;
+                    break;
+            }
+
+        }
+
     }
 
 }

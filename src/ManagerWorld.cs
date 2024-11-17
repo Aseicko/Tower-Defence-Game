@@ -27,6 +27,25 @@ namespace Tower_Defence_Game.src
 
         }
 
+        private void Display()
+        {
+            Console.SetCursorPosition(0, 0);
+
+            for (int i = 0; i < worldTileData.GetLength(0); i++)
+            {
+                for (int j = 0; j < worldTileData.GetLength(1); j++)
+                {
+                    if (currentPlayerPosition == (i, j))
+                    {
+                        Console.Write('|' + worldTileData[i, j].ToString() + "|");
+                    }
+                    else { Console.Write(' ' + worldTileData[i, j].ToString() + ' '); }
+                }
+                Console.WriteLine();
+            }
+
+        }
+
     }
 
 }

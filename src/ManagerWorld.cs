@@ -1,9 +1,17 @@
 ﻿using System;
+using System.Threading;
 
 namespace Tower_Defence_Game.src
 {
-    internal class ManagerWorld
+    public interface IWorld
     {
+        void Execute();
+    }
+
+    internal class ManagerWorld : IWorld
+    {
+        const int millisecondsPerFrame = 20;
+
         protected WorldTile[,] worldTileData;
 
         protected (int, int) currentPlayerPosition = (0, 0);
@@ -13,6 +21,37 @@ namespace Tower_Defence_Game.src
             worldTileData = new WorldTile[sizeHorizontal, sizeVertical];
 
             this.Inicialize();
+        }
+
+        void IWorld.Execute()
+        {
+            Console.Clear();
+
+            //temp field size data
+            ManagerWorld world = new ManagerWorld(10,10);
+            bool isGameRun = true;
+
+            Thread threadDisplayWorld = new Thread(() =>
+            {
+                while (isGameRun)
+                {
+                    world.Display();
+                    Thread.Sleep(millisecondsPerFrame);
+
+                }
+            });
+
+            threadDisplayWorld.Start();
+
+            while (isGameRun)
+            {
+                world.Process(ref isGameRun);
+
+            }
+
+            threadDisplayWorld.Join();
+
+            Console.Clear();
         }
 
         private void Inicialize()

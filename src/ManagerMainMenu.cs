@@ -63,7 +63,8 @@ namespace Tower_Defence_Game.src
 
         private void EventStartGame()
         {
-            throw new NotImplementedException();
+            IWorld world = new ManagerWorld(10, 10);
+            world.Execute();
         }
 
         private void EventOpenSettings()

@@ -34,6 +34,11 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="src\.keep" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="src\ManagerMainMenu.cs" />
+    <Compile Include="src\Projects.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

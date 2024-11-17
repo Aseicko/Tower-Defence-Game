@@ -35,6 +35,7 @@ namespace Tower_Defence_Game.src
             {
                 while (isGameRun)
                 {
+                    world.Update();
                     world.Display();
                     Thread.Sleep(millisecondsPerFrame);
 
@@ -52,6 +53,24 @@ namespace Tower_Defence_Game.src
             threadDisplayWorld.Join();
 
             Console.Clear();
+        }
+
+        void Update()
+        {
+            for (int i = 0; i < worldTileData.GetLength(0); i++)
+            {
+                for(int j = 0; j < worldTileData.GetLength(1); j++)
+                {
+                    if (currentPlayerPosition == (i, j))
+                    {
+                        Console.SetCursorPosition(0, 11);
+                        Console.Write($"Data of {i} {j} is {worldTileData[i,j]}");
+                    }
+
+                }
+
+            }
+
         }
 
         private void Inicialize()

@@ -16,6 +16,10 @@ namespace Tower_Defence_Game.src
 
         protected (int, int) currentPlayerPosition = (0, 0);
 
+        ConsoleKey inputWorld;
+
+        protected IActions actions = new ManagerAction();
+
         internal ManagerWorld(uint sizeHorizontal, uint sizeVertical)
         {
             worldTileData = new WorldTile[sizeHorizontal, sizeVertical];
@@ -35,18 +39,27 @@ namespace Tower_Defence_Game.src
             {
                 while (isGameRun)
                 {
-                    world.Update();
-                    world.Display();
-                    Thread.Sleep(millisecondsPerFrame);
+                    lock (world)
+                    {
+                        world.Update();
+                        world.Display();
+                        Thread.Sleep(millisecondsPerFrame);
+
+                    }
 
                 }
             });
 
             threadDisplayWorld.Start();
+            Thread.Sleep(millisecondsPerFrame);
 
             while (isGameRun)
             {
-                world.Process(ref isGameRun);
+                lock (world)
+                {
+                    world.Process(ref isGameRun);
+
+                }
 
             }
 
@@ -63,7 +76,7 @@ namespace Tower_Defence_Game.src
                 {
                     if (currentPlayerPosition == (i, j))
                     {
-                        Console.SetCursorPosition(0, 11);
+                        Console.SetCursorPosition(0, 12);
                         Console.Write($"Data of {i} {j} is {worldTileData[i,j]}");
                     }
 
@@ -88,6 +101,7 @@ namespace Tower_Defence_Game.src
         private void Display()
         {
             Console.SetCursorPosition(0, 0);
+            Console.WriteLine("<World>");
 
             for (int i = 0; i < worldTileData.GetLength(0); i++)
             {
@@ -102,11 +116,13 @@ namespace Tower_Defence_Game.src
                 Console.WriteLine();
             }
 
+            Console.WriteLine("</World>");
+
         }
 
         private void Process(ref bool continueGame)
         {
-            ConsoleKey inputWorld = Console.ReadKey(intercept: true).Key;
+            inputWorld = Console.ReadKey(intercept: true).Key;
 
             switch (inputWorld)
             {
@@ -130,7 +146,7 @@ namespace Tower_Defence_Game.src
                     break;
 
                 case ConsoleKey.Spacebar:
-
+                    actions.Execute();
                     break;
 
                 case ConsoleKey.Escape:

@@ -39,6 +39,7 @@
   <ItemGroup>
     <Compile Include="src\BaseAttackUnit.cs" />
     <Compile Include="src\BaseDefendUnit.cs" />
+    <Compile Include="src\ManagerAction.cs" />
     <Compile Include="src\ManagerMainMenu.cs" />
     <Compile Include="src\ManagerWorld.cs" />
     <Compile Include="src\Projects.cs" />

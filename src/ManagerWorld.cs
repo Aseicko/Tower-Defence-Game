@@ -146,7 +146,7 @@ namespace Tower_Defence_Game.src
                     break;
 
                 case ConsoleKey.Spacebar:
-                    actions.Execute();
+                    actions.Execute(ref worldTileData, ref currentPlayerPosition);
                     break;
 
                 case ConsoleKey.Escape:

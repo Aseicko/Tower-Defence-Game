@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Threading;
 
 namespace Tower_Defence_Game.src
 {
-    public interface IActions
+    internal interface IActions
     {
-        void Execute();
+        void Execute(ref WorldTile[,] world, ref (int, int) playerPosition);
 
     }
 
@@ -13,10 +12,12 @@ namespace Tower_Defence_Game.src
     {
         ConsoleKey inputAction;
 
-        void IActions.Execute()
+        ManagerDefendUnit defendUnit = new ManagerDefendUnit();
+
+        void IActions.Execute(ref WorldTile[,] world, ref (int,int) playerPosition)
         {
             this.Display();
-            this.Process();
+            this.Process(ref world, ref playerPosition);
 
             Console.Clear();
 
@@ -33,7 +34,7 @@ namespace Tower_Defence_Game.src
 
         }
 
-        private void Process()
+        private void Process(ref WorldTile[,] world, ref (int, int) playerPosition)
         {
             inputAction = Console.ReadKey(intercept: true).Key;
 
@@ -43,7 +44,7 @@ namespace Tower_Defence_Game.src
                     break;
 
                 case ConsoleKey.D1:
-
+                    defendUnit.Place(world, playerPosition.Item1, playerPosition.Item2);
                     break;
 
                 case ConsoleKey.D2:

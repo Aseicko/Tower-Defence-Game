@@ -2,8 +2,8 @@
 {
     internal class WorldTile
     {
-        private BaseDefendUnit DefendUnit {  get; set; }
-        private BaseAttackUnit AttackUnit { get; set; }
+        internal BaseDefendUnit DefendUnit {  get; set; }
+        internal BaseAttackUnit AttackUnit { get; set; }
 
         internal WorldTile()
         {

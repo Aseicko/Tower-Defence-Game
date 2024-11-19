@@ -2,5 +2,11 @@
 {
     internal class BaseDefendUnit
     {
+        public override string ToString()
+        {
+            return "-T-";
+        }
+
     }
+
 }

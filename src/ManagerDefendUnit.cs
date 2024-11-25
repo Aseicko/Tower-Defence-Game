@@ -22,6 +22,15 @@ namespace Tower_Defence_Game.src
 
         }
 
+        public void Remove(WorldTile[,] world, int posHorizontal, int posVertical)
+        {
+            if (posHorizontal < 0 || posHorizontal >= world.GetLength(0) || posVertical < 0 || posVertical >= world.GetLength(1)) return;
+            if (world[posHorizontal, posVertical].DefendUnit == null) return;
+
+            world[posHorizontal, posVertical].DefendUnit = null;
+
+        }
+
     }
 
 }

@@ -48,7 +48,7 @@ namespace Tower_Defence_Game.src
                     break;
 
                 case ConsoleKey.D2:
-                    
+                    defendUnit.Remove(world, playerPosition.Item1, playerPosition.Item2);
                     break;
 
             }

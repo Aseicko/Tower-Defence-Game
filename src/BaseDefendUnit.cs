@@ -9,4 +9,22 @@
 
     }
 
+    internal class AttackProjectileSingle : BaseDefendUnit
+    {
+        public override string ToString()
+        {
+            return "APS";
+        }
+
+    }
+
+    internal class AttackHitscanSingle : BaseDefendUnit
+    {
+        public override string ToString()
+        {
+            return "AHS";
+        }
+
+    }
+
 }
